@@ -10,8 +10,7 @@
 
 	<spring:url value="/estudiantes/add" var="addEstudianteURL" />
 
-	<form:form method="POST" action="${addEstudianteURL}"
-		modelAttribute="estudianteForm">
+	<form:form method="POST" action="${addEstudianteURL}" modelAttribute="estudianteForm">
 		<table>
 			<tr>
 				<td><form:label path="nombre">Nombre</form:label></td>
