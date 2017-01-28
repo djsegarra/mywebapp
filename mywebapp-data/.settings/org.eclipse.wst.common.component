@@ -2,5 +2,7 @@
     <wb-module deploy-name="mywebapp-data">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/resources/database/hibernate"/>
+        <wb-resource deploy-path="/" source-path="/src/main/resources/spring"/>
     </wb-module>
 </project-modules>

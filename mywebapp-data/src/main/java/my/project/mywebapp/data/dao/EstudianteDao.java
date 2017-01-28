@@ -1,9 +1,9 @@
-package my.project.mywebapp.lao;
+package my.project.mywebapp.data.dao;
 
 import my.project.mywebapp.data.model.Estudiante;
 
-public interface EstudianteLao {
-
-	public Estudiante getEstudiante(); 
+public interface EstudianteDao {
+	
 	public void storeEstudiante(Estudiante estudiante);
+
 }

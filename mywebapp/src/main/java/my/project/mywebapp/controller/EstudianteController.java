@@ -35,8 +35,9 @@ public class EstudianteController {
 	}
 	
 	@RequestMapping(value="estudiantes/add",method = RequestMethod.POST)
-	public String addEstudiante(@ModelAttribute ("estudianteForm")Estudiante estu) throws IOException{
-	 System.out.println("Nombre = " + estu.getNombre() + ", apellido = "+ estu.getApellido());
+	public String addEstudiante(@ModelAttribute ("estudianteForm")Estudiante estu,Model model) throws IOException{
+	 this.estudianteLao.storeEstudiante(estu);
+	 this.populateData(model);
 	 return "crearEstudiante";
 	}
 	
