@@ -23,7 +23,7 @@ public class EstudianteController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 		
-		return "redirect:/estudiantes";
+		return "redirect:login";
 	}
 	
 	@RequestMapping(value ="estudiantes",method = RequestMethod.GET)
