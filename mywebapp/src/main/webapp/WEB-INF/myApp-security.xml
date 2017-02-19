@@ -7,15 +7,15 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	
-	<http  authentication-manager-ref="authenticationManager">
-	<intercept-url pattern="/login" access="permitAll" />
-<!-- 		<intercept-url pattern="/estudiantes/**" access="hasRole('ROLE_Admin')" /> -->
+	<http use-expressions="true" authentication-manager-ref="authenticationManager">
+		<intercept-url pattern="/estudiantes/**" access="hasRole('ROLE_Admin')" />
 		<form-login login-page="/login" 
 		authentication-failure-url="/login"
+		login-processing-url="/dologin"
 		username-parameter="username" 
 		password-parameter="password" 
 		default-target-url="/home"  />
-		<logout invalidate-session="true" logout-success-url="/login" logout-url="/j_spring_security_logout" />
+		<logout invalidate-session="true" logout-success-url="/login" logout-url="/dologout" />
 		<access-denied-handler error-page="/denied"/>
 <!-- 		<session-management invalid-session-url="/login"> -->
 <!-- 			<concurrency-control max-sessions="1" expired-url="/login" /> -->
@@ -23,6 +23,7 @@
 
 	</http>
 	
+
 	<authentication-manager id="authenticationManager" >
 		<authentication-provider  user-service-ref="customUserDetailsService"/>
 	</authentication-manager>
