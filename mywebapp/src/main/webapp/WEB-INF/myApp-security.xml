@@ -1,19 +1,31 @@
-<beans xmlns="http://www.springframework.org/schema/beans" 
-   xmlns:security="http://www.springframework.org/schema/security"
+<beans:beans xmlns="http://www.springframework.org/schema/security" 
+    xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/security 
-	http://www.springframework.org/schema/security/spring-security.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	
-	<security:http authentication-manager-ref="">
-	
-	</security:http>
-	
-	<security:authentication-manager id="authBean">
-		<security:authentication-provider user-service-ref="userDetailsService"/>
-	</security:authentication-manager>
+	<http  authentication-manager-ref="authenticationManager">
+	<intercept-url pattern="/login" access="permitAll" />
+<!-- 		<intercept-url pattern="/estudiantes/**" access="hasRole('ROLE_Admin')" /> -->
+		<form-login login-page="/login" 
+		authentication-failure-url="/login"
+		username-parameter="username" 
+		password-parameter="password" 
+		default-target-url="/home"  />
+		<logout invalidate-session="true" logout-success-url="/login" logout-url="/j_spring_security_logout" />
+		<access-denied-handler error-page="/denied"/>
+<!-- 		<session-management invalid-session-url="/login"> -->
+<!-- 			<concurrency-control max-sessions="1" expired-url="/login" /> -->
+<!-- 		</session-management> -->
 
-	<bean id="userDetailsService" class="my.project.mywebapp.lao.SecurityLao" />
-</beans>
+	</http>
+	
+	<authentication-manager id="authenticationManager" >
+		<authentication-provider  user-service-ref="customUserDetailsService"/>
+	</authentication-manager>
+
+	<beans:bean id="customUserDetailsService" class="my.project.mywebapp.security.SecurityLaoImpl"  />
+</beans:beans>

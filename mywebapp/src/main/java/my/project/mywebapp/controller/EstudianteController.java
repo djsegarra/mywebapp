@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,21 @@ public class EstudianteController {
 	@Autowired
 	private EstudianteLao estudianteLao;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model) {
+	@RequestMapping(value = {"/","/login"},method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(HttpServletRequest request, Model model){
 		
-		return "redirect:login";
+		return "login";
+	}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home( Model model){
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/denied", method = { RequestMethod.GET, RequestMethod.POST })
+	public String denied( Model model){
+		
+		return "denied";
 	}
 	
 	@RequestMapping(value ="estudiantes",method = RequestMethod.GET)
