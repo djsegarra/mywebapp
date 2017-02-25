@@ -1,5 +1,7 @@
 package my.project.mywebapp.lao.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,10 @@ import my.project.mywebapp.data.dao.EstudianteDao;
 import my.project.mywebapp.data.model.Estudiante;
 import my.project.mywebapp.lao.EstudianteLao;
 
-@Service
+@Service(value="estudianteLocalservice")
 @Transactional
 public class EstudianteLaoImpl implements EstudianteLao {
+	
 	@Autowired
 	EstudianteDao estudianteDao;
 
@@ -22,7 +25,6 @@ public class EstudianteLaoImpl implements EstudianteLao {
 
 	@Override
 	public void storeEstudiante(Estudiante estudiante) {
-		System.out.println(estudiante);
 		//guardamos en BD
 		estudianteDao.storeEstudiante(estudiante);
 			
@@ -33,6 +35,16 @@ public class EstudianteLaoImpl implements EstudianteLao {
 
 	public void setEstudianteDao(EstudianteDao estudianteDao) {
 		this.estudianteDao = estudianteDao;
+	}
+
+	@Override
+	public List<Estudiante> getEstudiantes() {
+		return this.estudianteDao.getEstudiantes();
+	}
+
+	@Override
+	public Estudiante getEstudianteById(long id) {
+		return this.estudianteDao.getEstudianteById(id);
 	}
 	
 
